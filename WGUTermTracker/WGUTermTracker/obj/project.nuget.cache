@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "T6XxRitil/M=",
+  "dgSpecHash": "tXOwAOOHr78=",
   "success": true,
   "projectFilePath": "D:\\Projects\\MAUI\\D424-MobileApplication\\WGUTermTracker\\WGUTermTracker\\WGUTermTracker.csproj",
   "expectedPackageFiles": [
@@ -145,6 +145,10 @@
     "C:\\Users\\hilla\\.nuget\\packages\\xamarin.kotlinx.coroutines.core.jvm\\1.9.0.3\\xamarin.kotlinx.coroutines.core.jvm.1.9.0.3.nupkg.sha512",
     "C:\\Users\\hilla\\.nuget\\packages\\xamarin.kotlinx.serialization.core\\1.7.3.4\\xamarin.kotlinx.serialization.core.1.7.3.4.nupkg.sha512",
     "C:\\Users\\hilla\\.nuget\\packages\\xamarin.kotlinx.serialization.core.jvm\\1.7.3.4\\xamarin.kotlinx.serialization.core.jvm.1.7.3.4.nupkg.sha512",
+    "C:\\Users\\hilla\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\9.0.10\\microsoft.netcore.app.runtime.win-x64.9.0.10.nupkg.sha512",
+    "C:\\Users\\hilla\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\9.0.10\\microsoft.windowsdesktop.app.runtime.win-x64.9.0.10.nupkg.sha512",
+    "C:\\Users\\hilla\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\9.0.10\\microsoft.aspnetcore.app.runtime.win-x64.9.0.10.nupkg.sha512",
+    "C:\\Users\\hilla\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\9.0.10\\microsoft.netcore.app.crossgen2.win-x64.9.0.10.nupkg.sha512",
     "C:\\Users\\hilla\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.57\\microsoft.windows.sdk.net.ref.10.0.19041.57.nupkg.sha512"
   ],
   "logs": []

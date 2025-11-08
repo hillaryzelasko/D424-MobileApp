@@ -1,0 +1,4 @@
+D:\Projects\MAUI\D424-MobileApplication\WGUTermTracker\WGUTermTracker\bin\Release\net9.0-android\publish\com.companyname.wgutermtracker-Signed.aab
+D:\Projects\MAUI\D424-MobileApplication\WGUTermTracker\WGUTermTracker\bin\Release\net9.0-android\publish\com.companyname.wgutermtracker.aab
+D:\Projects\MAUI\D424-MobileApplication\WGUTermTracker\WGUTermTracker\bin\Release\net9.0-android\publish\com.companyname.wgutermtracker-Signed.apk
+D:\Projects\MAUI\D424-MobileApplication\WGUTermTracker\WGUTermTracker\bin\Release\net9.0-android\publish\_Microsoft.Android.Resource.Designer.dll

@@ -1,0 +1,1 @@
+D:\Projects\MAUI\D424-MobileApplication\WGUTermTracker\WGUTermTracker.Tests\bin\Release\net9.0-android\publish\_Microsoft.Android.Resource.Designer.dll
