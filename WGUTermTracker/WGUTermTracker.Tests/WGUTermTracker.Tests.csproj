@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0-windows10.0.19041.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\WGUTermTracker\Validation\*.cs" Link="Validation\%(Filename)%(Extension)" />
+    <Compile Include="..\WGUTermTracker\Models\Assessment.cs" Link="Models\Assessment.cs" />
+    <Compile Include="..\WGUTermTracker\Models\Course.cs" Link="Models\Course.cs" />
+    <Compile Include="..\WGUTermTracker\Models\Enums.cs" Link="Models\Enums.cs" />
+    <Compile Include="..\WGUTermTracker\Models\Term.cs" Link="Models\Term.cs" />
+  </ItemGroup>
+</Project>

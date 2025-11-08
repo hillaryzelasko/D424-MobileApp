@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:WGUTermTracker.ViewModels"
+             xmlns:models="clr-namespace:WGUTermTracker.Models"
+             x:Class="WGUTermTracker.Views.CourseNotesListPage"
+             x:DataType="viewModels:CourseNotesListViewModel"
+             Title="Course Notes">
+    <Grid RowDefinitions="Auto,Auto,*" Padding="10" RowSpacing="12">
+        <Label
+            Text="Review notes from every course in one place."
+            TextColor="{AppThemeBinding Light=#333333, Dark=#dddddd}"
+            FontSize="14"
+            Grid.Row="0" />
+
+        <SearchBar
+            Grid.Row="1"
+            Placeholder="Search notes"
+            Text="{Binding SearchText}"
+            Margin="0,6,0,0" />
+
+        <RefreshView
+            Grid.Row="2"
+            Command="{Binding LoadCommand}"
+            IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView
+                ItemsSource="{Binding CourseNotes}"
+                SelectionMode="None"
+                Margin="0,0,0,10">
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout Padding="20" Spacing="8" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="{Binding EmptyMessage}" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Try adjusting your search or add notes from a course to see them listed here." HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:CourseNoteSummary">
+                        <Border StrokeThickness="1" Stroke="{AppThemeBinding Light=#cccccc, Dark=#444444}" Padding="12" Margin="0,0,0,10">
+                            <VerticalStackLayout Spacing="6">
+                                <Label Text="{Binding CourseName}" FontAttributes="Bold" FontSize="18" />
+                                <Label Text="{Binding TermDisplayName, StringFormat='Term: {0}'}" FontAttributes="Italic" />
+                                <Label
+                                    Text="{Binding DisplayNotes}"
+                                    LineBreakMode="WordWrap"
+                                    MaxLines="5"
+                                    TextColor="{AppThemeBinding Light=#333333, Dark=#dddddd}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:WGUTermTracker.Models"
+             xmlns:viewModels="clr-namespace:WGUTermTracker.ViewModels"
+             x:Class="WGUTermTracker.Views.CourseReportPage"
+             Title="Class Report"
+             x:DataType="viewModels:CourseReportViewModel">
+
+    <VerticalStackLayout Padding="20" Spacing="16">
+        <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="28" />
+        <Label Text="{Binding GeneratedAtDisplay}" FontSize="14" TextColor="Gray" />
+
+        <Label Text="Add at least one class to generate a report."
+               FontAttributes="Italic"
+               FontSize="16"
+               TextColor="Gray"
+               IsVisible="{Binding IsEmpty}" />
+
+        <ScrollView Orientation="Both"
+                    IsVisible="{Binding HasEntries}">
+            <VerticalStackLayout Spacing="0">
+                <Grid Padding="12"
+                      ColumnSpacing="12"
+                      RowSpacing="0"
+                      HorizontalOptions="Fill"
+                      BackgroundColor="{AppThemeBinding Light=#f0f0f0, Dark=#2d2d2d}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="160" />
+                        <ColumnDefinition Width="240" />
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="160" />
+                        <ColumnDefinition Width="160" />
+                        <ColumnDefinition Width="240" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Term" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    <Label Grid.Column="1" Text="Course" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    <Label Grid.Column="2" Text="Status" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    <Label Grid.Column="3" Text="Start Date" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    <Label Grid.Column="4" Text="End Date" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    <Label Grid.Column="5" Text="Notes" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                </Grid>
+
+                <VerticalStackLayout BindableLayout.ItemsSource="{Binding Entries}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="models:CourseReportEntry">
+                            <Border StrokeThickness="0"
+                                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1e1e1e}">
+                                <Grid Padding="12"
+                                      ColumnSpacing="12"
+                                      RowSpacing="4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="160" />
+                                        <ColumnDefinition Width="240" />
+                                        <ColumnDefinition Width="120" />
+                                        <ColumnDefinition Width="160" />
+                                        <ColumnDefinition Width="160" />
+                                        <ColumnDefinition Width="240" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding DisplayTermName}"
+                                           LineBreakMode="TailTruncation"
+                                           MaxLines="1"
+                                           HorizontalTextAlignment="Start" />
+                                    <Label Grid.Column="1"
+                                           Text="{Binding DisplayCourseName}"
+                                           LineBreakMode="TailTruncation"
+                                           MaxLines="1"
+                                           HorizontalTextAlignment="Start" />
+                                    <Label Grid.Column="2"
+                                           Text="{Binding Status}"
+                                           LineBreakMode="TailTruncation"
+                                           MaxLines="1"
+                                           HorizontalTextAlignment="Center" />
+                                    <Label Grid.Column="3"
+                                           Text="{Binding StartDate, StringFormat='{0:G}'}"
+                                           LineBreakMode="TailTruncation"
+                                           MaxLines="1"
+                                           HorizontalTextAlignment="Start" />
+                                    <Label Grid.Column="4"
+                                           Text="{Binding EndDate, StringFormat='{0:G}'}"
+                                           LineBreakMode="TailTruncation"
+                                           MaxLines="1"
+                                           HorizontalTextAlignment="Start" />
+                                    <Label Grid.Column="5"
+                                           Text="{Binding SanitizedNotes}"
+                                           LineBreakMode="WordWrap"
+                                           MaxLines="4"
+                                           HorizontalTextAlignment="Start" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
+
+</ContentPage>

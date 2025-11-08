@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:models="clr-namespace:WGUTermTracker.Models"
+             xmlns:viewModels="clr-namespace:WGUTermTracker.ViewModels"
+             x:Class="WGUTermTracker.Views.TermPage"
+             x:Name="TermDetailPage"
+             Title="{Binding Term.Termname}"
+             x:DataType="viewModels:TermDetailViewModel">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10" >
+
+            <Label Text="Term Name:" FontAttributes="Bold"/>
+            <Entry Text="{Binding Term.Termname}" />
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="0">
+                <VerticalStackLayout Grid.Column="0" Padding="0" Spacing="1">
+                    <Label Text="Start Date" FontAttributes="Bold" />
+                    <DatePicker 
+                        MinimumDate="01/01/2020"
+                        MaximumDate="12/31/2100"
+                        Date="{Binding Term.StartDate}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" Padding="0" Spacing="1">
+                    <Label Text="End Date" FontAttributes="Bold" />
+                    <DatePicker 
+                        MinimumDate="01/01/2020"
+                        MaximumDate="12/31/2100"
+                        Date="{Binding Term.EndDate}" />
+                </VerticalStackLayout>
+            </Grid>
+            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
+
+                <HorizontalStackLayout HorizontalOptions="End" Grid.Column="0" Spacing="12" >
+                    <Button Text="Cancel" 
+                            Command="{Binding CancelCommand}"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Column="1" Spacing="12" >
+                    <Button Text="Delete" 
+                            Command="{Binding DeleteTermCommand}"
+                            IsVisible="{Binding CanDeleteTerm}"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Column="2" Spacing="12">
+                    <Button Text ="Save"
+                            Command="{Binding SaveTermCommand}"/>
+                </HorizontalStackLayout>
+            </Grid>
+
+
+
+            <Label Text="Courses"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   Margin="0,20,0,0" />
+
+            <Label Text="You can only add up to six courses per term."
+                   TextColor="Red"
+                   IsVisible="{Binding ShowCourseLimitWarning}" />
+
+            <Button Text="Add Course"
+                    Command="{Binding AddCourseCommand}"
+                    IsEnabled="{Binding CanAddAnotherCourse}" />
+
+            <CollectionView ItemsSource="{Binding Courses}"
+                            SelectionMode="None"
+                            Margin="0,10,0,0">
+                <CollectionView.EmptyView>
+                    <Label Text="No courses added yet."
+                           HorizontalOptions="Center"
+                           TextColor="Gray"
+                           Margin="0,10,0,10" />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Course">
+                        <Grid Padding="10"                              
+                              RowDefinitions="Auto,Auto,Auto">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.EditCourseCommand, Source={x:Reference TermDetailPage}}"
+                                                     CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
+                            <Label Text="{Binding CourseName}"                                
+                                   FontSize="18"
+                                   FontAttributes="Bold" />
+                            <Label Grid.Row="1"
+                                   Text="{Binding StartDate, StringFormat='Start: {0:d}'}" />
+                            <Label Grid.Row="2"
+                                   Text="{Binding EndDate, StringFormat='End: {0:d}'}" />
+                            <HorizontalStackLayout Grid.Column="1"
+                                                   Grid.RowSpan="3"
+                                                   Spacing="10"
+                                                   VerticalOptions="Center">
+
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

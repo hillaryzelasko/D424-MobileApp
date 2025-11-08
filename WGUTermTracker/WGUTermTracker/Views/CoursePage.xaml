@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:WGUTermTracker.ViewModels"
+             xmlns:shapes="clr-namespace:Microsoft.Maui.Controls.Shapes;assembly=Microsoft.Maui.Controls"
+             x:Class="WGUTermTracker.Views.CoursePage"
+             x:Name="CourseDetailPage"
+             Title="{Binding Course.CourseName}"
+             x:DataType="viewModels:CourseDetailViewModel">
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10">
+
+            <Label Text="Course Alerts" FontAttributes="Bold" />
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <VerticalStackLayout Grid.Column="0" Spacing="6">
+                    <Label Text="Notify on Start Date" HorizontalTextAlignment="Center" />
+                    <Switch
+                        HorizontalOptions="Center"
+                        IsToggled="{Binding Course.StartAlertEnabled}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" Spacing="6">
+                    <Label Text="Notify on End Date" HorizontalTextAlignment="Center" />
+                    <Switch
+                        HorizontalOptions="Center"
+                        IsToggled="{Binding Course.EndAlertEnabled}" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <Border StrokeThickness="1" Stroke="{AppThemeBinding Light=#cccccc, Dark=#444444}" Padding="12">
+                <Border.StrokeShape>
+                    <shapes:RoundRectangle CornerRadius="6" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Course Information" FontAttributes="Bold" FontSize="18" />
+                    <Label Text="Course Name" FontAttributes="Bold" />
+                    <Entry Text="{Binding Course.CourseName}" />
+
+                    <Label Text="Status" FontAttributes="Bold" />
+                    <Picker
+                        Title="Select course status"
+                        ItemsSource="{Binding StatusOptions}"
+                        SelectedItem="{Binding SelectedStatus}" />
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="0">
+                        <VerticalStackLayout Grid.Column="0" Padding="0" Spacing="1">
+                            <Label Text="Start Date" FontAttributes="Bold" />
+                            <DatePicker
+                                MinimumDate="01/01/2020"
+                                MaximumDate="12/31/2100"
+                                Date="{Binding Course.StartDate}" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1" Padding="0" Spacing="1">
+                            <Label Text="Anticipated End Date" FontAttributes="Bold" />
+                            <DatePicker
+                                MinimumDate="01/01/2020"
+                                MaximumDate="12/31/2100"
+                                Date="{Binding Course.EndDate}" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border StrokeThickness="1" Stroke="{AppThemeBinding Light=#cccccc, Dark=#444444}" Padding="12">
+                <Border.StrokeShape>
+                    <shapes:RoundRectangle CornerRadius="6" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Instructor Information" FontAttributes="Bold" FontSize="18" />
+                    <Label Text="Instructor Name" FontAttributes="Bold" />
+                    <Entry Text="{Binding Course.InstructorName}" />
+
+                    <Label Text="Instructor Phone" FontAttributes="Bold" />
+                    <Entry Text="{Binding Course.InstructorPhone}" Keyboard="Telephone" />
+
+                    <Label Text="Instructor Email" FontAttributes="Bold" />
+                    <Entry Text="{Binding Course.InstructorEmail}" Keyboard="Email" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="Assessments" FontAttributes="Bold" />
+
+            <Border StrokeThickness="1" Stroke="{AppThemeBinding Light=#cccccc, Dark=#444444}" Padding="10">
+                <Border.BindingContext>
+                    <Binding Path="ObjectiveAssessmentEditor" />
+                </Border.BindingContext>
+                <Border.StrokeShape>
+                    <shapes:RoundRectangle CornerRadius="6" />
+                </Border.StrokeShape>
+
+                <Grid ColumnDefinitions="*" x:DataType="viewModels:AssessmentEditorViewModel">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding Source={x:Reference CourseDetailPage}, Path=BindingContext.EditAssessmentCommand}"
+                            CommandParameter="{Binding .}" />
+                    </Grid.GestureRecognizers>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="{Binding DisplayName}" FontAttributes="Bold" />
+                        <Label Text="{Binding Title, StringFormat='Title: {0}'}" />
+                        <Label Text="{Binding StartDate, StringFormat='Start: {0:d}'}" />
+                        <Label Text="{Binding EndDate, StringFormat='End: {0:d}'}" />
+                        <Label Text="{Binding DueDate, StringFormat='Due: {0:d}'}" />
+                        <Label Text="{Binding SelectedStatus, StringFormat='Status: {0}'}" />
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+
+            <Border StrokeThickness="1" Stroke="{AppThemeBinding Light=#cccccc, Dark=#444444}" Padding="10">
+                <Border.BindingContext>
+                    <Binding Path="PerformanceAssessmentEditor" />
+                </Border.BindingContext>
+                <Border.StrokeShape>
+                    <shapes:RoundRectangle CornerRadius="6" />
+                </Border.StrokeShape>
+                <Grid ColumnDefinitions="*" x:DataType="viewModels:AssessmentEditorViewModel">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding Source={x:Reference CourseDetailPage}, Path=BindingContext.EditAssessmentCommand}"
+                            CommandParameter="{Binding .}" />
+                    </Grid.GestureRecognizers>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="{Binding DisplayName}" FontAttributes="Bold" />
+                        <Label Text="{Binding Title, StringFormat='Title: {0}'}" />
+                        <Label Text="{Binding StartDate, StringFormat='Start: {0:d}'}" />
+                        <Label Text="{Binding EndDate, StringFormat='End: {0:d}'}" />
+                        <Label Text="{Binding DueDate, StringFormat='Due: {0:d}'}" />
+                        <Label Text="{Binding SelectedStatus, StringFormat='Status: {0}'}" />
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+
+            <Border StrokeThickness="1" Stroke="{AppThemeBinding Light=#cccccc, Dark=#444444}" Padding="12">
+                <Border.StrokeShape>
+                    <shapes:RoundRectangle CornerRadius="6" />
+                </Border.StrokeShape>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding EditNotesCommand}" />
+                </Border.GestureRecognizers>
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Notes" FontAttributes="Bold" />
+                    <Label
+                        Text="{Binding CourseNotes}"
+                        LineBreakMode="TailTruncation"
+                        MaxLines="3"
+                        TextColor="{AppThemeBinding Light=#333333, Dark=#dddddd}" />
+                    <Button
+                        Text="Open Notes"
+                        Command="{Binding EditNotesCommand}"
+                        HorizontalOptions="End" />
+                </VerticalStackLayout>
+            </Border>
+            
+            
+            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
+
+                <HorizontalStackLayout Grid.Column="0" Spacing="12">
+                    <Button Text="Cancel"
+                    Command="{Binding CancelCommand}" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Column="1" Spacing="12">
+                    <Button Text="Delete"
+                    Command="{Binding DeleteCourseCommand}"
+                    IsVisible="{Binding CanDeleteCourse}" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Column="2" Spacing="12">
+                    <Button Text="Save"
+                    Command="{Binding SaveCourseCommand}" />
+                </HorizontalStackLayout>
+
+
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

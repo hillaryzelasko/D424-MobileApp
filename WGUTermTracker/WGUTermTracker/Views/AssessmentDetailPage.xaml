@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:WGUTermTracker.ViewModels"
+             xmlns:shapes="clr-namespace:Microsoft.Maui.Controls.Shapes;assembly=Microsoft.Maui.Controls"
+             x:Class="WGUTermTracker.Views.AssessmentDetailPage"
+             x:DataType="viewModels:AssessmentEditorViewModel"
+             Title="{Binding DisplayName}">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <Label Text="Assessment Details" FontAttributes="Bold" FontSize="18" />
+
+            <Label Text="Title" />
+            <Entry Text="{Binding Title}" Placeholder="Enter assessment title" />
+
+            <Label Text="Anticipated Start Date" />
+            <DatePicker Date="{Binding StartDate}" />
+
+            <Label Text="Anticipated End Date" />
+            <DatePicker Date="{Binding EndDate}" />
+
+            <Label Text="Due Date" />
+            <DatePicker Date="{Binding DueDate}" />
+
+            <Label Text="Status" />
+            <Picker ItemsSource="{Binding StatusOptions}" SelectedItem="{Binding SelectedStatus}" />
+
+            <Border StrokeThickness="1" Stroke="{AppThemeBinding Light=#cccccc, Dark=#444444}" Padding="12">
+                <Border.StrokeShape>
+                    <shapes:RoundRectangle CornerRadius="6" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Notifications" FontAttributes="Bold" />
+                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" RowSpacing="8">
+                        <Label
+                            Grid.Column="0"
+                            Text="Notify on Start Date"
+                            VerticalOptions="Center"
+                            TextColor="{AppThemeBinding Light=#333333, Dark=#dddddd}" />
+                        <Switch Grid.Column="1" IsToggled="{Binding StartAlertEnabled}" />
+
+                        <Label
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            Text="Notify on End Date"
+                            VerticalOptions="Center"
+                            TextColor="{AppThemeBinding Light=#333333, Dark=#dddddd}" />
+                        <Switch Grid.Column="1" Grid.Row="1" IsToggled="{Binding EndAlertEnabled}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border StrokeThickness="1" Stroke="{AppThemeBinding Light=#cccccc, Dark=#444444}" Padding="12">
+                <Border.StrokeShape>
+                    <shapes:RoundRectangle CornerRadius="6" />
+                </Border.StrokeShape>
+                <Label Text="Tap Save to update this assessment or Delete to clear it." FontSize="12" />
+            </Border>
+
+            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
+                <HorizontalStackLayout Grid.Column="0" Spacing="12">
+                    <Button Text="Delete"
+                            Command="{Binding DeleteCommand}"
+                            IsVisible="{Binding CanDelete}" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Column="2" Spacing="12">
+                    <Button Text="Save"
+                            Command="{Binding SaveCommand}" />
+                </HorizontalStackLayout>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
