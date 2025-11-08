@@ -6,7 +6,6 @@ This repository contains a .NET MAUI application for tracking WGU terms, courses
 
 - `WGUTermTracker/` – Main MAUI application.
 - `WGUTermTracker.Tests/` – NUnit test project with validation and schema tests.
-- `B*- Wireframe.png` – Design assets used for the UI wireframes.
 
 ## Validation Coverage
 
