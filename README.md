@@ -23,12 +23,3 @@ The validators live under `WGUTermTracker/Validation/` and perform the same chec
    ```bash
    dotnet test WGUTermTracker.sln
    ```
-
-The project uses NUnit 3 with `Microsoft.NET.Test.Sdk` so tests will appear automatically inside Visual Studio.
-
-## Recent Changes
-
-- Added dedicated validator classes for courses, terms, and assessments.
-- Updated `CourseDetailViewModel` and `TermDetailViewModel` to reuse the shared validation helpers.
-- Created an NUnit test project with reusable test data builders and validation tests (`CourseValidatorTests`, `TermValidatorTests`, `AssessmentValidatorTests`).
-- Added a schema regression test (`CourseSchemaTests`) to ensure the course table keeps the indexed `TermId` column after schema updates.
